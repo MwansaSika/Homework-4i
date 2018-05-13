@@ -1,0 +1,45 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+
+class Dice {
+public:
+	int Diface;
+	Dice() {
+		Diface = 6;
+	}
+	int roll() {
+		return rand() % Diface + 1;
+	}
+};
+
+int main() {
+	srand(time(0));
+	Dice di1, di2;
+	int TheplyersTotal = 0;
+	int CPUTotal = 0;
+	while (true) {
+		int yes;
+		cout << "Do you want to roll dice and accumulate points? (Enter 1 if you agree): ";
+		cin >> yes;
+		if (yes != 1) break;
+		CPUTotal += di1.roll() + di2.roll();
+		TheplyersTotal += di1.roll() + di2.roll();
+		cout << "You currently have: " << TheplyersTotal << "\n";
+		if (TheplyersTotal > 21) break;
+	}
+	cout << "You have a total of: " << TheplyersTotal << "\n";
+	cout << "The computer has a total of: " << CPUTotal << "\n";
+	if (TheplyersTotal <= 21 && TheplyersTotal == CPUTotal) {
+		cout << "The Match is a tie\n";
+	}
+	else if (TheplyersTotal <= 21 && TheplyersTotal > CPUTotal) {
+		cout << "You won the game, Congrats\n";
+	}
+	else {
+		cout << "You just lost, sorry try again\n";
+	}
+	cin.get();
+	cin.get();
+}
